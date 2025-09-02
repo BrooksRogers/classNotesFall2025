@@ -1,0 +1,55 @@
+# Assignment 1 - Level 0 - Basic Buffer Overflow
+
+## Targets 
+
+* [binary (v1)](bin/level0.v1.bin) - Compiled with modern (Ubuntu 24.04) glibc
+* [alternate binary (v1)](bin/level0.v1.glibc.bin) - Compiled with older (Ubuntu 16.04) glibc
+
+*You may use either of these binaries for this portion of the assignment. They should be identical for all intents and purposes. Please specify which you used for the assignment.*
+
+*If the binaries need to be updated, they will be updated with incrementing version numbers and descriptions of what needed to be changed.*
+
+## Steps and questions
+
+1. Describe, in general, what information each of the following tools provide you about the target binary
+
+* `file`
+* `strings`
+* `readelf`
+
+2. Use the tools discussed in the previous question to analyze the target binary. What useful information did each provide? Remember to research the different flags for each to get different information.
+
+3. Disassemble the binary with Ghidra or IDA. What are the addresses of:
+
+* main
+0x0000127E
+* the vulnerable function
+0x00001220
+
+4. What is the vulnerable operation?
+
+5. How many bytes is the vulnerable buffer?
+
+6. What stack address contains the stored return instruction pointer and what is the stored address?
+
+7. Write the program in C with your best attempt at reproducing the original code. Assume basic, human-created code with standard types, no tricks, and standard library calls. You may use a decompiler as an example, but do not copy and paste. 
+
+8. Turn off ASLR (Walkthroughs/aslr_instructions.md)
+
+9. Provide a screenshot of the memory map of the program as it is running (`/proc/<pid>/maps`). Provide the address ranges of 
+
+* The stack (is it executable?)
+* The heap
+* The .text section (hint, check permissions and compare with the readelf output)
+
+10. Run the program with GDB. Insert a breakpoint at the start of the vulnerable function. What is the address? What does it look like disassembled?
+
+11. Use python to inject an arbitrary number of bytes into the process's standard input. Determine the number of bytes required to overwrite the instruction pointer and cause a segmentation fault. What is the number? Include a screenshot demonstrating that you have overwritten EIP in its entirety. Include your `run` command.
+
+12. Examine the stack and determine an appopriate address to return to for your exploit payload. What address did you choose and why?
+
+13. Use the provided [exploit.py] file to begin building your payload. Include the completed version in your submission. Comment as needed to convey your thoughts.
+
+## Exploitation (Discussion)
+
+Make a best-effort attempt to exploit the binary. Discuss what you tried and why it may or may not have worked.  We may have in-class discussions and support.
